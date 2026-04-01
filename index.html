@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tahmeed Booking</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+body {
+  color: white;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 40px;
+  background: white;
+  color: black;
+}
+
+nav .logo {
+  font-weight: bold;
+  color: orange;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+nav ul li {
+  cursor: pointer;
+  color: #ff6600;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1587574293340-92f8d7b7c6b7') center/cover;
+  position: relative;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.6);
+  height: 100%;
+  padding-top: 60px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.hero p {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+/* BOOKING CARD */
+.booking-box {
+  background: linear-gradient(45deg, orange, #ff6600);
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.inputs input, .inputs select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* BUTTON */
+.book-btn {
+  margin-top: 15px;
+  padding: 12px;
+  background: #ff6600;
+  border: none;
+  color: white;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* CALL BUTTON */
+.call-btn {
+  margin-top: 20px;
+  display: inline-block;
+  background: orange;
+  padding: 10px 20px;
+  border-radius: 30px;
+  color: black;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">TAHMEED</div>
+  <ul>
+    <li>Home</li>
+    <li>About Us</li>
+    <li>Contact</li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="overlay">
+
+    <h1>Book. Pay. Travel.</h1>
+    <p>Easy, safer and Convenient booking</p>
+
+    <!-- BOOKING BOX -->
+    <div class="booking-box">
+
+      <div class="inputs">
+        <input type="text" id="from" placeholder="Departure location">
+        <input type="text" id="to" placeholder="Destination">
+        <input type="date" id="date">
+
+        <select id="passengers">
+          <option>1 Passenger</option>
+          <option>2 Passengers</option>
+          <option>3 Passengers</option>
+        </select>
+      </div>
+
+      <button class="book-btn" onclick="sendToWhatsApp()">
+        🔍 Book via WhatsApp
+      </button>
+
+    </div>
+
+    <!-- CALL BUTTON -->
+    <a href="tel:0733391352" class="call-btn">
+      📞 CALL US NOW 0733 391 352
+    </a>
+
+  </div>
+</section>
+
+<script>
+function sendToWhatsApp() {
+  const from = document.getElementById("from").value;
+  const to = document.getElementById("to").value;
+  const date = document.getElementById("date").value;
+  const passengers = document.getElementById("passengers").value;
+
+  if (!from || !to || !date) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  const message = `*TAHMEED BOOKING*%0A
+From: ${from}%0A
+To: ${to}%0A
+Date: ${date}%0A
+Passengers: ${passengers}%0A
+Please confirm availability.`;
+
+  const phone = "254733391352";
+
+  const url = `https://wa.me/${phone}?text=${message}`;
+
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
